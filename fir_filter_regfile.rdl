@@ -1,0 +1,27 @@
+regfile fir_filter_regfile {
+    name = "FIR Filter registers";
+    desc = "Status and Control Registers of FIR filter";
+    default regwidth = 32;
+
+    reg {
+        name = "FIR coefficients";
+        desc = "8-bit FIR filter coefficients";
+        field { sw = rw; hw = r; swacc; fieldwidth = 8; desc = "FIR coeff"; } coeff0;
+    } fir_coeffs [8];
+
+    external reg {
+        name = "FIR output";
+        desc = "Output FIR value";
+        field { sw = r; hw = na; fieldwidth = 8; desc = "Output value"; } output_value;
+    } fir_output;
+
+    reg {
+        name = "SCR";
+        desc = "Status and Control Register (SCR) for FIR filter";
+        field {sw=r;  hw=rw; we;    fieldwidth=1; desc="Overflow in sum detected";   } sum_overflow;
+        field {sw=r;  hw=r;  hwclr; fieldwidth=1; desc="Overflow in mult. detected"; } mult_overflow;
+        field {sw=r;  hw=r;  hwset; fieldwidth=1; desc="Error condition detected";   } error_condition;
+        field {sw=rw; hw=r;         fieldwidth=1; desc="1 to enable truncation";     } truncation_enable;
+    } scr;
+
+};

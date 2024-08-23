@@ -1,0 +1,6 @@
+`include "fir_filter_regfile.rdl"
+
+addrmap fir_filter_regmap {
+    fir_filter_regfile fir_filter_regs_0 @ 0x80;
+    fir_filter_regfile fir_filter_regs_1 @ 0x100;
+};
